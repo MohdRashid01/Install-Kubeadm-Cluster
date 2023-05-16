@@ -74,6 +74,10 @@ sudo apt-get install -y kubelet kubeadm kubectl
 sudo apt-mark hold kubelet kubeadm kubectl
 
 sleep 5
+curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3
+chmod 700 get_helm.sh
+./get_helm.sh
+
 #sudo apt update
 #sudo apt-cache madison kubeadm | tac
 exit 1
@@ -98,7 +102,7 @@ kubectl taint nodes --all node-role.kubernetes.io/control-plane-
 #kubectl taint nodes --all node-role.kubernetes.io/master-
 -----------------------------------------------------------------------------------------------
 ### INSTALL WEAVE NETWORK ###
-kubectl apply -f "https://cloud.weave.works/k8s/net?k8s-version=$(kubectl version | base64 | tr -d '\n')"
+kubectl apply -f https://github.com/weaveworks/weave/releases/download/v2.8.1/weave-daemonset-k8s.yaml
 #kubectl apply -f https://docs.projectcalico.org/manifests/calico.yaml
 -----------------------------------------------------------------------------------------------
 kubectl get po -n kube-system
@@ -109,7 +113,5 @@ kubectl get cs
 #kubectl create -f https://docs.projectcalico.org/manifests/tigera-operator.yaml 
 #kubectl create -f https://docs.projectcalico.org/manifests/custom-resources.yam
 -----------------------------------------------------------------------------------------------
-#curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3
-#chmod 700 get_helm.sh
-#./get_helm.sh
+
 -----------------------------------------------------------------------------------------------
