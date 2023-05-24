@@ -83,7 +83,7 @@ chmod 700 get_helm.sh
 exit 1
 
 -----------------------------------------------------------------------------------------------
-### MANUALLY STEPS TODO ###
+### MANUALLY STEPS TO-DO ###
 
 sudo nano /etc/containerd/config.toml
 #disabled_plugins = ["cri"]
@@ -103,15 +103,17 @@ kubectl taint nodes --all node-role.kubernetes.io/control-plane-
 -----------------------------------------------------------------------------------------------
 ### INSTALL WEAVE NETWORK ###
 kubectl apply -f https://github.com/weaveworks/weave/releases/download/v2.8.1/weave-daemonset-k8s.yaml
+
 #kubectl apply -f https://docs.projectcalico.org/manifests/calico.yaml
 -----------------------------------------------------------------------------------------------
-kubectl get po -n kube-system
-kubectl get nodes
-kubectl get cs
+### FLANNEL NETWORK ###
+#kubectl apply -f https://github.com/flannel-io/flannel/releases/latest/download/kube-flannel.yml
 -----------------------------------------------------------------------------------------------
 ### INSTALL CALICO COREDNS ###
 #kubectl create -f https://docs.projectcalico.org/manifests/tigera-operator.yaml 
 #kubectl create -f https://docs.projectcalico.org/manifests/custom-resources.yam
 -----------------------------------------------------------------------------------------------
-
+kubectl get po -n kube-system
+kubectl get nodes
+kubectl get cs
 -----------------------------------------------------------------------------------------------
