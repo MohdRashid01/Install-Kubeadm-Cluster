@@ -113,6 +113,8 @@ kubectl apply -f https://github.com/weaveworks/weave/releases/download/v2.8.1/we
 #kubectl create -f https://docs.projectcalico.org/manifests/tigera-operator.yaml 
 #kubectl create -f https://docs.projectcalico.org/manifests/custom-resources.yam
 -----------------------------------------------------------------------------------------------
+kubectl label node worker-node01  node-role.kubernetes.io/worker=worker
+
 kubectl get po -n kube-system
 kubectl get nodes
 kubectl get cs
